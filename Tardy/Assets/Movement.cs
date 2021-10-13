@@ -11,16 +11,16 @@ public class Movement : MonoBehaviour
     public float speedMulti = 1.0f;
     public float jumpForce = 11000.0f;
     public float speedBar = 100f;
-    public bool isGrounded;
-    public Rigidbody2D rb;
-
+    public bool isGrounded, isCeiling;
+    Rigidbody2D rb;
+    BoxCollider2D boxColl;
     // Start is called before the first frame update
     void Start()
     {//declaring the rigidbody variable
         rb = GetComponent<Rigidbody2D>();
-   
-        
-        
+        boxColl = gameObject.GetComponent<BoxCollider2D>();
+
+
     }
     
     // Update is called once per frame
@@ -28,12 +28,16 @@ public class Movement : MonoBehaviour
     {
         float movement = baseSpeed * speedMulti;
         transform.Translate(movement, 0.0f, 0.0f);
-
+        if (Input.GetKeyDown(KeyCode.S) && (isCeiling == true))
+        {
+            boxColl.isTrigger = true;
+        }
         //testing if the player is on the ground and if the W key is pressed
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
          
             jump();
+            boxColl.isTrigger = true;
         }
         multInc();
     }
@@ -43,6 +47,12 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            isCeiling = false;
+        }
+        if (collision.gameObject.tag == "Ceiling")
+        {
+            isCeiling = true;
+            isGrounded = false;
         }
     }
     //the jumping function
@@ -65,5 +75,11 @@ public class Movement : MonoBehaviour
         }
         currentX = transform.position.x;
     }
-    
+    void OnTriggerExit2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Ceiling")
+        {
+            boxColl.isTrigger = false;
+        }
+    }
 }
