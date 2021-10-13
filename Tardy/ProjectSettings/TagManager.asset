@@ -9,6 +9,8 @@ TagManager:
   - Jumping
   - ObstacleL
   - buffScooter
+  - buffDefense
+  - buffBoost
   layers:
   - Default
   - TransparentFX

@@ -11,8 +11,12 @@ public class Movement : MonoBehaviour
     public float speedMulti = 1.0f;
     public float jumpForce = 11000.0f;
     public float speedBar = 100f;
-    public float speedReduc;
-    public bool isGrounded, isCeiling, hasScooter;
+    public float speedReduc, extrTime;
+    public float boostTimer = 2.0f;
+    public float dTimer = 10.0f;
+    public float bTime = 0.0f;
+    public float dTime = 0.0f;
+    public bool isGrounded, isCeiling, hasScooter, hasBoost, hasDefense;
     Rigidbody2D rb;
     BoxCollider2D boxColl;
     // Start is called before the first frame update
@@ -27,6 +31,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         float movement = baseSpeed * speedMulti;
         transform.Translate(movement, 0.0f, 0.0f);
         if (Input.GetKeyDown(KeyCode.S) && (isCeiling == true))
@@ -41,10 +46,21 @@ public class Movement : MonoBehaviour
             boxColl.isTrigger = true;
         }
         multInc();
+        
+        if (hasBoost == true)
+        {
+            hasBoost=BuffCntdwn(bTime, boostTimer,2f, 1);
+        }
+        if (hasDefense == true)
+        {
+            hasDefense = BuffCntdwn(dTime, dTimer, 0.0f, 2);
+        }
+     
     }
-    //the function to detect if the player is touching the ground
+    //the function to detect what the player is touching
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //detects what it touches
         switch (collision.gameObject.tag)
         {
             case "Ground":
@@ -56,28 +72,27 @@ public class Movement : MonoBehaviour
                 isGrounded = false;
                 break;
             case "ObstacleL":
-                if (hasScooter==true)
-                { 
-                    baseSpeed -= speedReduc;
-                    hasScooter = false;
-                }
-                speedMulti -= .1f;
+                ObstacleHit(0.1f);
+                break;
+            case "ObstacleM":
+                ObstacleHit(0.05f);
+                break;
+            case "ObstacleS":
+                ObstacleHit(0.01f);
                 break;
             case "buffScooter":
                 hasScooter = true;
                 baseSpeed += speedReduc;
                 break;
+            case "buffBoost":
+                hasBoost = true;
+                speedMulti += 2f;
+                break;
+            case "buffDefense":
+                hasDefense = true;
+                break;
         }
-      /*  if (collision.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
-            isCeiling = false;
-        }
-        if (collision.gameObject.tag == "Ceiling")
-        {
-            isCeiling = true;
-            isGrounded = false;
-        }*/
+
     }
     //the jumping function
     void jump()
@@ -106,5 +121,51 @@ public class Movement : MonoBehaviour
         {
             boxColl.isTrigger = false;
         }
+    }
+    void ObstacleHit(float damage)
+    {
+        if (hasScooter == true)
+        {
+            baseSpeed -= speedReduc;
+            hasScooter = false;
+        }
+        if (hasDefense == true)
+        {
+            speedMulti -= (damage / 2);
+        }
+        else
+        {
+            speedMulti -= damage;
+        }
+    }
+    bool BuffCntdwn(float timeMax, float clockTime, float speedReduction, int timerType)
+    {
+        if (timerType == 1)
+        {
+            bTime += Time.deltaTime;
+        }
+        else if (timerType == 2)
+        {
+            dTime += Time.deltaTime;
+        }
+        if (timeMax<clockTime)
+            {
+                return true;
+            }
+            else
+        {
+            switch (timerType)
+            {
+                case 1:
+                    bTime = 0;
+                    break;
+                case 2:
+                    dTime = 0;
+                    break;
+            }
+                speedMulti -= speedReduction;
+                return false;
+        }
+       
     }
 }
