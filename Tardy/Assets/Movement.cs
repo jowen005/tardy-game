@@ -12,15 +12,13 @@ public class Movement : MonoBehaviour
     public float jumpForce = 11000.0f;
     public float speedBar = 100f;
     public bool isGrounded;
-    public float distMoved = 0f;
     public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {//declaring the rigidbody variable
         rb = GetComponent<Rigidbody2D>();
-        //THIS is where to setup the initial speed, not in update
-     //   rb.velocity = Vector2.right * (baseSpeed * speedMulti);
+   
         
         
     }
@@ -54,13 +52,13 @@ public class Movement : MonoBehaviour
        rb.velocity += Vector2.up * (jumpForce);
         isGrounded = false;
     }
-    
+ //the function to slowly accelerate   
     void multInc()
     {
         currentX = transform.position.x;
        
-        distMoved = currentX - distMoved;
-        if (distMoved >= speedBar)
+       
+        if (currentX >= speedBar)
         {
             speedBar += 100f;
             speedMulti += .01f;
