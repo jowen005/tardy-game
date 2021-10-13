@@ -11,7 +11,8 @@ public class Movement : MonoBehaviour
     public float speedMulti = 1.0f;
     public float jumpForce = 11000.0f;
     public float speedBar = 100f;
-    public bool isGrounded, isCeiling;
+    public float speedReduc;
+    public bool isGrounded, isCeiling, hasScooter;
     Rigidbody2D rb;
     BoxCollider2D boxColl;
     // Start is called before the first frame update
@@ -44,7 +45,30 @@ public class Movement : MonoBehaviour
     //the function to detect if the player is touching the ground
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        switch (collision.gameObject.tag)
+        {
+            case "Ground":
+                isGrounded = true;
+                isCeiling = false;
+                break;
+            case "Ceiling":
+                 isCeiling = true;
+                isGrounded = false;
+                break;
+            case "ObstacleL":
+                if (hasScooter==true)
+                { 
+                    baseSpeed -= speedReduc;
+                    hasScooter = false;
+                }
+                speedMulti -= .1f;
+                break;
+            case "buffScooter":
+                hasScooter = true;
+                baseSpeed += speedReduc;
+                break;
+        }
+      /*  if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
             isCeiling = false;
@@ -53,7 +77,7 @@ public class Movement : MonoBehaviour
         {
             isCeiling = true;
             isGrounded = false;
-        }
+        }*/
     }
     //the jumping function
     void jump()
@@ -77,6 +101,7 @@ public class Movement : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D coll)
     {
+        //the code to pass through the ceiling
         if (coll.gameObject.tag == "Ceiling")
         {
             boxColl.isTrigger = false;
