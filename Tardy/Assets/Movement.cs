@@ -88,6 +88,7 @@ public class Movement : MonoBehaviour
             case "buffBoost":
                 hasBoost = true;
                 speedMulti += 2f;
+                boxColl.size = new Vector2(2.0f, 0.64f);
                 break;
             case "buffDefense":
                 hasDefense = true;
@@ -130,13 +131,16 @@ public class Movement : MonoBehaviour
             baseSpeed -= speedReduc;
             hasScooter = false;
         }
-        if (hasDefense == true)
+        if (hasBoost == false)
         {
-            speedMulti -= (damage / 2);
-        }
-        else
-        {
-            speedMulti -= damage;
+            if (hasDefense == true)
+            {
+                speedMulti -= (damage / 2);
+            }
+            else
+            {
+                speedMulti -= damage;
+            }
         }
     }
     bool BuffCntdwn(float timeMax, float clockTime, float speedReduction, int timerType)
@@ -158,6 +162,7 @@ public class Movement : MonoBehaviour
             switch (timerType)
             {
                 case 1:
+                    boxColl.size = new Vector2(0.64f, 0.64f);
                     bTime = 0;
                     break;
                 case 2:
