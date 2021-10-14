@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
     {//declaring the rigidbody variable
         rb = GetComponent<Rigidbody2D>();
         boxColl = gameObject.GetComponent<BoxCollider2D>();
+        Application.targetFrameRate = 60;
 
 
     }
