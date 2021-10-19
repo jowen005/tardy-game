@@ -11,6 +11,8 @@ TagManager:
   - buffScooter
   - buffDefense
   - buffBoost
+  - ObstacleM
+  - ObstacleS
   layers:
   - Default
   - TransparentFX
