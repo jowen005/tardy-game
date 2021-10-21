@@ -31,8 +31,12 @@ public class Movement : MonoBehaviour
     
     // Update is called once per frame
     void Update()
+        
     {
-    
+    if (speedMulti <= 0.1f)
+        {
+            speedMulti = 0.1f;
+        }
         float movement = baseSpeed * speedMulti;
         transform.Translate(movement, 0.0f, 0.0f);
         if (Input.GetKeyDown(KeyCode.S) && (isCeiling == true))
@@ -72,6 +76,15 @@ public class Movement : MonoBehaviour
                  isCeiling = true;
                 isGrounded = false;
                 break;
+           
+        }
+
+    }
+    //the jumping function
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
             case "ObstacleL":
                 ObstacleHit(0.1f);
                 break;
@@ -94,9 +107,7 @@ public class Movement : MonoBehaviour
                 hasDefense = true;
                 break;
         }
-
     }
-    //the jumping function
     void jump()
     {
         //adding to the overall velocity to jump
