@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     public float dTimer = 10.0f;
     public float bTime = 0.0f;
     public float dTime = 0.0f;
-    public bool isGrounded, isCeiling, hasScooter, hasBoost, hasDefense;
+    public bool isGrounded, isCeiling, hasScooter, hasBoost, hasDefense, isMidair;
     Rigidbody2D rb;
     BoxCollider2D boxColl;
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxColl = gameObject.GetComponent<BoxCollider2D>();
         Application.targetFrameRate = 60;
-
+        isMidair = false;
 
     }
     
@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && (isCeiling == true))
         {
             boxColl.isTrigger = true;
+            isCeiling = false;
         }
         //testing if the player is on the ground and if the W key is pressed
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
@@ -100,9 +101,12 @@ public class Movement : MonoBehaviour
                 baseSpeed += speedReduc;
                 break;
             case "buffBoost":
-                hasBoost = true;
-                speedMulti += 2f;
-                boxColl.size = new Vector2(2.0f, 0.64f);
+                if (hasBoost == false) {
+                    hasBoost = true;
+                    speedMulti += 2f;
+                    boxColl.size = new Vector2(2.0f, 0.64f);
+                }
+                
                 break;
             case "buffDefense":
                 hasDefense = true;

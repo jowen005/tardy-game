@@ -161,12 +161,6 @@ MonoBehaviour:
   bigBlue: {fileID: 0}
   scooter: {fileID: 0}
   spawnables: []
---- !u!1 &622082719 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8242811948598756421, guid: c6d6cdae00fa2f5458f79a17b2703117,
-    type: 3}
-  m_PrefabInstance: {fileID: 8242811949545565776}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &884574197
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +243,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 190288379}
+  - {fileID: 1629038515}
   m_Father: {fileID: 1513547753}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -404,7 +399,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 884574200}
-  - {fileID: 1629038515}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -436,6 +430,7 @@ MonoBehaviour:
   hasScooter: 0
   hasBoost: 0
   hasDefense: 0
+  isMidair: 0
 --- !u!61 &1513547755
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -608,7 +603,7 @@ MonoBehaviour:
   spawnTimer: 3
   timerReset: 3
   spawnPOS: {x: 0, y: 0, z: 0}
-  obstacleL1: {fileID: 622082719}
+  obstacleL1: {fileID: 1968321113}
   obstacleS1: {fileID: 2654519292911986881}
   obstacleM1: {fileID: 8785687217593296773}
   soda: {fileID: 3353204705006407055}
@@ -623,10 +618,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629038513}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: 2.21, z: 0}
+  m_LocalPosition: {x: 9.84, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1513547753}
+  m_Father: {fileID: 884574200}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1629038516
@@ -638,7 +633,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629038513}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -649,7 +644,13 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 7
+--- !u!1 &1968321113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8364750055586411394, guid: 61b544bc72e91f746bb2525ce64eef06,
+    type: 3}
+  m_PrefabInstance: {fileID: 8364750055397679563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1997820298
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +834,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bang Energy(ground)
       objectReference: {fileID: 0}
+    - target: {fileID: 1642385646235967801, guid: c9c536d9f7c0193449dfa8d8f8050007,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1642385646235967802, guid: c9c536d9f7c0193449dfa8d8f8050007,
         type: 3}
       propertyPath: m_RootOrder
@@ -1000,7 +1006,7 @@ PrefabInstance:
     - target: {fileID: 3353204704954292219, guid: 58081a737c4c5ff43bdfff78a126f65e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: 3353204704954292219, guid: 58081a737c4c5ff43bdfff78a126f65e,
         type: 3}
@@ -1224,7 +1230,7 @@ PrefabInstance:
     - target: {fileID: 5838523965814901854, guid: a14fb8a4cd3f806418199f98b51614b3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5838523965814901854, guid: a14fb8a4cd3f806418199f98b51614b3,
         type: 3}
@@ -1431,7 +1437,7 @@ PrefabInstance:
     - target: {fileID: 8490422089957771583, guid: 8fc9eee8128abde4eb70b9af45e4b130,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8490422089957771583, guid: 8fc9eee8128abde4eb70b9af45e4b130,
         type: 3}

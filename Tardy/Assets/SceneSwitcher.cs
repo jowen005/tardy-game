@@ -15,9 +15,10 @@ public class SceneSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     if (Input.GetKeyDown(KeyCode.Space))
+     if (Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name=="Opening screen")
         {
-            SceneManager.LoadScene("RunNJumpTest");
+            SceneManager.LoadScene("fuck", LoadSceneMode.Single);
+         
         } 
     }
 }
