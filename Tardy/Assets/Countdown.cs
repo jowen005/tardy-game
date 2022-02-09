@@ -32,6 +32,7 @@ public class Countdown : MonoBehaviour
             rectTransform.sizeDelta = new Vector2(600, 200);
             text.fontSize = 48;
             text.text = "Time's Up!";
+            //SwitchScreen();
             Invoke("SwitchScreen", 2);
             
         }
