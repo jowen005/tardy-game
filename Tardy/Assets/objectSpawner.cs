@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class objectSpawner : MonoBehaviour
 {
+    enum Object { ObstacleS, ObstacleM, ObstacleL, Scooter, Soda, BigBlue };
     public Vector2 screenBounds;
     public float xstart;
     public float u_or_d;
@@ -17,6 +18,9 @@ public class objectSpawner : MonoBehaviour
     public GameObject obstacleL1;
     public GameObject obstacleS1;
     public GameObject obstacleM1;
+    public GameObject obstacleL2;
+    public GameObject obstacleS2;
+    public GameObject obstacleM2;
     public GameObject soda;
     public GameObject bigBlue;
     public GameObject scooter;
@@ -74,36 +78,35 @@ public class objectSpawner : MonoBehaviour
                 case 1:
                 case 2:
                 case 3:
-                    spawnables.Add(Instantiate(obstacleL1,spawnPOS, transform.rotation));
+                    Spawner(spawnPOS, Object.ObstacleL);
                     sentBoost = 1.0f;
                     break;
                 case 4:
                 case 5:
                 case 6:
-                    spawnables.Add(Instantiate(obstacleM1, spawnPOS, transform.rotation));
+                    Spawner(spawnPOS, Object.ObstacleM);
                     sentBoost = 1.0f;
                     break;
                 case 7:
                 case 8:
                 case 9:
-                    spawnables.Add(Instantiate(obstacleS1, spawnPOS, transform.rotation));
+                    Spawner(spawnPOS, Object.ObstacleS);
                     sentBoost = 1.0f;
                     break;
 
                 case 10:
                 case 11:
-                    spawnables.Add(Instantiate(soda, spawnPOS, transform.rotation));
+                    Spawner(spawnPOS, Object.Soda);
                     sentBoost = 0.5f;
                     break;
                 case 12:
-              
-                    spawnables.Add(Instantiate(bigBlue, spawnPOS, transform.rotation));
+
+                    Spawner(spawnPOS, Object.BigBlue);
                     sentBoost = 0.5f;
                     break;
                 case 13:
                 case 14:
-
-                    spawnables.Add(Instantiate(scooter, spawnPOS, transform.rotation));
+                    Spawner(spawnPOS, Object.Scooter);
                     sentBoost = 0.5f;
                     break;
                 default:
@@ -114,4 +117,50 @@ public class objectSpawner : MonoBehaviour
         }
         
     }
+    void Spawner(Vector3 spawnPOS, Object type)
+    {
+        switch (type)
+        {
+            case Object.ObstacleS:
+                if (spawnPOS.y > 0)
+                {
+                    spawnables.Add(Instantiate(obstacleS2, spawnPOS, transform.rotation));
+                }
+                else
+                {
+                    spawnables.Add(Instantiate(obstacleS1, spawnPOS, transform.rotation));
+                }
+                break;
+            case Object.ObstacleM:
+                if (spawnPOS.y > 0)
+                {
+                    spawnables.Add(Instantiate(obstacleM2, spawnPOS, transform.rotation));
+                }
+                else
+                {
+                    spawnables.Add(Instantiate(obstacleM1, spawnPOS, transform.rotation));
+                }
+                break;
+            case Object.ObstacleL:
+            if (spawnPOS.y > 0)
+                {
+                    spawnables.Add(Instantiate(obstacleL2, spawnPOS, transform.rotation));
+                }
+            else{ 
+                    spawnables.Add(Instantiate(obstacleL1, spawnPOS, transform.rotation)); 
+                }
+                break;
+            case Object.Scooter:
+                spawnables.Add(Instantiate(scooter, spawnPOS, transform.rotation));
+                break;
+            case Object.Soda:
+                spawnables.Add(Instantiate(soda, spawnPOS, transform.rotation));
+                break;
+            case Object.BigBlue:
+                spawnables.Add(Instantiate(bigBlue, spawnPOS, transform.rotation));
+                break;
+        }
+
+    }
 }
+

@@ -157,10 +157,19 @@ MonoBehaviour:
   obstacleL1: {fileID: 0}
   obstacleS1: {fileID: 0}
   obstacleM1: {fileID: 0}
+  obstacleL2: {fileID: 0}
+  obstacleS2: {fileID: 0}
+  obstacleM2: {fileID: 0}
   soda: {fileID: 0}
   bigBlue: {fileID: 0}
   scooter: {fileID: 0}
   spawnables: []
+--- !u!1 &223055453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8242811948598756421, guid: c6d6cdae00fa2f5458f79a17b2703117,
+    type: 3}
+  m_PrefabInstance: {fileID: 8242811949545565776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &884574197
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7113c4622b47f45a10c09dc7cec026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelCntdn: 3
+  LevelCntdn: 9999
 --- !u!114 &1154581190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,9 +806,12 @@ MonoBehaviour:
   spawnTimer: 3
   timerReset: 3
   spawnPOS: {x: 0, y: 0, z: 0}
-  obstacleL1: {fileID: 1968321113}
-  obstacleS1: {fileID: 2654519292911986881}
-  obstacleM1: {fileID: 8785687217593296773}
+  obstacleL1: {fileID: 1866651691}
+  obstacleS1: {fileID: 1866681145}
+  obstacleM1: {fileID: 223055453}
+  obstacleL2: {fileID: 1968321113}
+  obstacleS2: {fileID: 8785687217593296773}
+  obstacleM2: {fileID: 2654519292911986881}
   soda: {fileID: 3353204705006407055}
   bigBlue: {fileID: 5758015037084920656}
   scooter: {fileID: 8490422090386321079}
@@ -839,6 +851,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!1 &1866651691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3880162564465007234, guid: 473e8ae2e54c0774eb045d2394281792,
+    type: 3}
+  m_PrefabInstance: {fileID: 3880162564285109462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1866681145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8839312644272042046, guid: e10dfd6cbb4867b4db8e024808bb0c94,
+    type: 3}
+  m_PrefabInstance: {fileID: 8839312643138008518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1968321113 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8364750055586411394, guid: 61b544bc72e91f746bb2525ce64eef06,
@@ -1262,10 +1286,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3880162564465007232, guid: 473e8ae2e54c0774eb045d2394281792,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 814517ec119fe594082871bad90faac3,
+        type: 3}
     - target: {fileID: 3880162564465007233, guid: 473e8ae2e54c0774eb045d2394281792,
         type: 3}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880162564465007233, guid: 473e8ae2e54c0774eb045d2394281792,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880162564465007233, guid: 473e8ae2e54c0774eb045d2394281792,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3880162564465007233, guid: 473e8ae2e54c0774eb045d2394281792,
         type: 3}
@@ -1551,6 +1591,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8364750055586411392, guid: 61b544bc72e91f746bb2525ce64eef06,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364750055586411392, guid: 61b544bc72e91f746bb2525ce64eef06,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364750055586411392, guid: 61b544bc72e91f746bb2525ce64eef06,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.73
       objectReference: {fileID: 0}
@@ -1599,6 +1649,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8364750055586411393, guid: 61b544bc72e91f746bb2525ce64eef06,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 35b60ceaf595ecd4081b581592d57402,
+        type: 3}
     - target: {fileID: 8364750055586411394, guid: 61b544bc72e91f746bb2525ce64eef06,
         type: 3}
       propertyPath: m_Name
