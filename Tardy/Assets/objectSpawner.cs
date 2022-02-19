@@ -10,9 +10,9 @@ public class objectSpawner : MonoBehaviour
     public float u_or_d;
     float udOld;
     public int randnum;
-    public float spawnTimer;
+    public float spawnDist;
     float sentBoost;
-    public float timerReset;
+    public float distReset;
     public Vector3 spawnPOS;
     BoxCollider2D boxColl;
     public GameObject obstacleL1;
@@ -24,15 +24,19 @@ public class objectSpawner : MonoBehaviour
     public GameObject soda;
     public GameObject bigBlue;
     public GameObject scooter;
+    public GameObject player;
     public List<GameObject> spawnables = new List<GameObject>();
+    float life;
     int xcount;
+    float oldX;
+    float newX;
 
     // Start is called before the first frame update
     void Start()
     {
         udOld = 0;
         sentBoost = 0;
-        timerReset = spawnTimer;
+        oldX = transform.position.x;
          xstart = transform.position.x;
          boxColl = gameObject.GetComponent<BoxCollider2D>();
     }
@@ -40,13 +44,17 @@ public class objectSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnTimer -= Time.deltaTime;
-        if (spawnTimer<= 0)
+        spawnDist-= XChange(ref oldX);
+        if (spawnables.Count > 0)
+        {
+            DespawnCheck(spawnables);
+        }
+        if (spawnDist<= 0)
         {
             
-            if (timerReset > 1.2f)
+            if (distReset > 30.0f)
             {
-                timerReset -= 0.1f;
+                distReset -= 1.0f;
             }
             randnum = Random.Range(0, 2);
             randnum *= 2;
@@ -64,7 +72,7 @@ public class objectSpawner : MonoBehaviour
                 udOld = u_or_d;
             spawnPOS = transform.position;
             spawnPOS += new Vector3(5.0f, u_or_d, 0.0f);
-            spawnTimer += timerReset;
+            spawnDist += distReset;
             if (sentBoost > 0.7f)
             {
                 xcount = Random.Range(1, 19);
@@ -113,9 +121,15 @@ public class objectSpawner : MonoBehaviour
                     sentBoost = 0.5f;
                     break;
             }
-         spawnTimer*=sentBoost*Random.Range(1.0f, 1.4f);
+         spawnDist*=sentBoost*Random.Range(1.0f, 1.4f);
         }
         
+    }
+    float XChange(ref float oldX)
+    {
+        float returnValue = transform.position.x - oldX;
+        oldX = transform.position.x;
+        return returnValue;
     }
     void Spawner(Vector3 spawnPOS, Object type)
     {
@@ -161,6 +175,15 @@ public class objectSpawner : MonoBehaviour
                 break;
         }
 
+    }
+    void DespawnCheck(List<GameObject> list)
+    {
+        life = list[0].GetComponent<Lifetime>().life;
+        if ((list[0].transform.position.x < (player.transform.position.x - 9.0f)) && (life > 1.0f))
+        {
+            Destroy(list[0]);
+            list.RemoveAt(0);
+        }
     }
 }
 

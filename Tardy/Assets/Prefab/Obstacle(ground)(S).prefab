@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8242811948598756424}
   - component: {fileID: 8242811948598756423}
   - component: {fileID: 8242811948598756422}
+  - component: {fileID: -2757003223100957055}
   m_Layer: 0
   m_Name: Obstacle(ground)(S)
   m_TagString: ObstacleS
@@ -109,3 +110,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &-2757003223100957055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8242811948598756421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0657958bc5d2e4a9da55ddf2fd8406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 378063901492577950, guid: 6f4133a084dcecb4ebc1c5d2fbca752c, type: 3}
+  distancediff: 0
+  playerx: 0
+  objx: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1642385646235967803}
   - component: {fileID: 1642385646235967800}
   - component: {fileID: 6132607717752198702}
+  - component: {fileID: -5444120452378176265}
   m_Layer: 0
   m_Name: Bang Energy(ground)
   m_TagString: buffDefense
@@ -122,5 +123,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6067db39e903d2842bcb85a034c30aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bangPrefab: {fileID: 0}
+  bang1Prefab: {fileID: 0}
   respawnTime: 2
+  screenBounds: {x: 0, y: 0}
+--- !u!114 &-5444120452378176265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642385646235967801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0657958bc5d2e4a9da55ddf2fd8406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 378063901492577950, guid: 6f4133a084dcecb4ebc1c5d2fbca752c, type: 3}
+  distancediff: 0
+  playerx: 0
+  objx: 0
