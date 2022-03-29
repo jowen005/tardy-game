@@ -5,6 +5,7 @@ using UnityEngine;
 public class objectSpawner : MonoBehaviour
 {
     enum Object { ObstacleS, ObstacleM, ObstacleL, Scooter, Soda, BigBlue };
+    enum Path {top, bottom};
     public Vector2 screenBounds;
     public float xstart;
     public float u_or_d;
@@ -30,10 +31,10 @@ public class objectSpawner : MonoBehaviour
     int xcount;
     float oldX;
     float newX;
-
     // Start is called before the first frame update
     void Start()
     {
+ 
         udOld = 0;
         sentBoost = 0;
         oldX = transform.position.x;
@@ -69,18 +70,27 @@ public class objectSpawner : MonoBehaviour
                 u_or_d = (float)randnum;
                 u_or_d -= 2.2f;
             }
-                udOld = u_or_d;
+            if ((udOld - u_or_d > -0.1) && (udOld - u_or_d < 0.1))
+            {
+                Random.InitState(Time.frameCount);
+                randnum = Random.Range(0, 2);
+                randnum *= 2;
+                u_or_d = (float)randnum;
+                u_or_d -= 2.2f;
+            }
+            udOld = u_or_d;
             spawnPOS = transform.position;
             spawnPOS += new Vector3(5.0f, u_or_d, 0.0f);
             spawnDist += distReset;
             if (sentBoost > 0.7f)
             {
-                xcount = Random.Range(1, 19);
+                xcount = Random.Range(0, 19);
             }
             else
             {
-                 xcount = Random.Range(1, 10);
+                 xcount = Random.Range(0, 10);
             }
+            
             switch (xcount)
             {
                 case 1:
@@ -139,6 +149,7 @@ public class objectSpawner : MonoBehaviour
                 if (spawnPOS.y > 0)
                 {
                     spawnables.Add(Instantiate(obstacleS2, spawnPOS, transform.rotation));
+
                 }
                 else
                 {
@@ -158,6 +169,7 @@ public class objectSpawner : MonoBehaviour
             case Object.ObstacleL:
             if (spawnPOS.y > 0)
                 {
+                    spawnPOS.y += 0.5f;
                     spawnables.Add(Instantiate(obstacleL2, spawnPOS, transform.rotation));
                 }
             else{ 
