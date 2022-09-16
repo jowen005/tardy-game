@@ -10,14 +10,14 @@ public class Movement : MonoBehaviour
     public float currentX=0f;
     public float baseSpeed = .00001f;
     public float speedMulti = 1.0f;
-    public float jumpForce = 11000.0f;
-    public float speedBar = 100f;
-    public float speedReduc, extrTime;
-    public float boostTimer = 2.0f;
-    public float dTimer = 10.0f;
-    public float bTime = 0.0f;
-    public float dTime = 0.0f;
-    public bool isGrounded, isCeiling, hasScooter, hasBoost, hasDefense, isMidair;
+    [SerializeField] private float jumpForce = 11000.0f;
+    [SerializeField] private float speedBar = 100f;
+    [SerializeField] private float speedReduc, extrTime;
+    [SerializeField] private float boostTimer = 2.0f;
+    [SerializeField] private float dTimer = 10.0f;
+    [SerializeField] private float bTime = 0.0f;
+    [SerializeField] private float dTime = 0.0f;
+    [SerializeField] private bool isGrounded, isCeiling, hasScooter, hasBoost, hasDefense, isMidair;
     Rigidbody2D rb;
     BoxCollider2D boxColl;
     // Start is called before the first frame update
